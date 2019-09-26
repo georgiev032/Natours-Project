@@ -1,0 +1,45 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// MEDIA QUERY MANAGER
+
+// 0px - 600px:   Phone 
+// 600px - 900px: Tablet portrait
+// 900px - 1200px: Tablet landscape
+// 1200 x 1800 is where normal styles apply
+// 1000px + : Big Screens
+
+// $breakpoints arguement choices:
+// - phone 
+// - tab-port
+// - tab-land
+// - big-desk
+
+// ORDER: Base > Typography > General Layout > Grid > Page Layout > Components
+
+// The best unit for media query it's "em" unlike from the rest where we write "em".
+// 1em = 16px
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) { @content };   // 600px : 16 = 37.5
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) { @content };   // 900px : 16 = 56.25
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) { @content };  // 1200px : 16 = 75
+  }
+  @if $breakpoint == big-desk {
+    @media only screen and (min-width: 112.5em) { @content };  // 1800px : 16 = 112.5
+  }
+}
+  
+//The best practice is to write "only screen and".
+
+
